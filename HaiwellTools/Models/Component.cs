@@ -154,6 +154,7 @@ namespace HaiwellTools.Models
                         break;
                 }
                 _maxDecModbusAddress = _minDecModbusAddress + _maxRange;
+                Range = Range;
                 DecModbusAdress = _minDecModbusAddress + _range + _hmiStartAddress;
                 OnPropertyChanged(nameof(ComponentType));
                 OnPropertyChanged(nameof(SizeType));

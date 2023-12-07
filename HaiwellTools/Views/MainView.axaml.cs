@@ -4,6 +4,8 @@ using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Platform;
 using HaiwellTools.ViewModels;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace HaiwellTools.Views;
 
@@ -12,6 +14,7 @@ public partial class MainView : UserControl
     public MainView()
     {
         InitializeComponent();
+        (menuitems?.Items?.Where(x=>((ListBoxItem)x)?.Name== "address").FirstOrDefault() as ListBoxItem).IsSelected=true;
     }
 
     private void ListBoxItem_Tapped(object? sender, Avalonia.Input.TappedEventArgs e)

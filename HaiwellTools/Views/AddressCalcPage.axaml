@@ -6,6 +6,7 @@
 			 xmlns:controls="clr-namespace:HaiwellTools.UserControls"
 			 xmlns:conv="clr-namespace:HaiwellTools.Converters;assembly=HaiwellTools"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              x:Class="HaiwellTools.Views.AddressCalcPage"
 			 x:DataType="vm:AddressCalcPageViewModel">
 	<Design.DataContext>
@@ -13,22 +14,105 @@
 	</Design.DataContext>
 	<UserControl.Resources>
 		<conv:EnumDescriptionConverter x:Key="typeconv"/>
+		<conv:ValueToBrushConverter x:Key="backgroundconv"/>
 	</UserControl.Resources>
-	<Grid ColumnDefinitions="Auto,Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
-		<TextBlock Grid.ColumnSpan="3" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-		<TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">HMI Start address:</TextBlock>
-		<TextBox Text="{Binding Component1.HmiStartAddress}" Height="40" Width="100" FontSize="14" Grid.Column="1" Grid.Row="1"/>
-		<TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Component:</TextBlock>
-		<ComboBox Height="40" x:Name="cbComp" FontSize="14" Grid.Column="1" SelectedValue="{Binding Component1.ComponentType,Converter={StaticResource typeconv}}" Margin="5" Padding="5" Grid.Row="2" ItemsSource="{Binding TypeList}" />
-		<TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">Range:</TextBlock>
-		<TextBox Text="{Binding Component1.Range}" Height="40" Width="100" FontSize="14" Grid.Column="1" Grid.Row="3"/>
-		<TextBlock Grid.Row="2" Grid.Column="2" Margin="5" VerticalAlignment="Center" Text="{Binding Component1.Name}"></TextBlock>
-		<TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">Dec address:</TextBlock>
-		<TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Component1.DecModbusAdress}" ></TextBlock>
-		<Button IsVisible="{OnPlatform True,Android=False,iOS=False}" Grid.Column="2" Grid.Row="4">Copy</Button>
-		<TextBlock Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">Hex address:</TextBlock>
-		<TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Component1.HexModbusAddress}" ></TextBlock>
-		<Button IsVisible="{OnPlatform True,Android=False,iOS=False}" Grid.Column="2" Grid.Row="5">Copy</Button>
-	
+
+	<Grid RowDefinitions="Auto,Auto">
+			<TextBlock Grid.ColumnSpan="1" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,10"/>
+	<WrapPanel HorizontalAlignment="Center" Grid.Row="1">
+		<Grid Grid.Row="1" Margin="10,5" ColumnDefinitions="Auto,Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+			<Border BorderBrush="#0F518C" BorderThickness="2" CornerRadius="10" Grid.RowSpan="7" Grid.ColumnSpan="4" Margin="-5,-4"></Border>
+
+			<TextBlock  Grid.Column="0" Margin="0,5" Grid.Row="1" VerticalAlignment="Center">HMI Start address:</TextBlock>
+			<StackPanel HorizontalAlignment="Right" Margin="0,5" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+				<Button Margin="5,0" BorderBrush="WhiteSmoke" BorderThickness="1" Command="{Binding SetHMIStartAddressTo0Command}" Background="{Binding Component1.HmiStartAddress, Converter={StaticResource backgroundconv}, ConverterParameter=0}" HorizontalContentAlignment="Center"  FontSize="16" Width="46">0</Button>
+				<Button Margin="0,0,5,0" BorderBrush="WhiteSmoke" BorderThickness="1" Command="{Binding SetHMIStartAddressTo1Command}" Background="{Binding Component1.HmiStartAddress, Converter={StaticResource backgroundconv}, ConverterParameter=1}" HorizontalContentAlignment="Center" FontSize="16" Width="46">1</Button>
+			</StackPanel>
+			<TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">PLC component:</TextBlock>
+			<ComboBox HorizontalAlignment="Right"
+				Background="#0F518C" HorizontalContentAlignment="Center"
+				Width="100" Height="40" FontSize="16" Grid.Column="1"
+				SelectedValue="{Binding Component1.ComponentType,Converter={StaticResource typeconv}}"
+				Margin="5" Padding="5" Grid.Row="2" ItemsSource="{Binding TypeList}" />
+			<TextBlock Grid.Column="0" Grid.Row="3" Height="36"
+					   VerticalAlignment="Center">
+				Component name:
+			</TextBlock>
+			<TextBlock TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent" Height="36" Width="100" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding Component1.Name}"></TextBlock>
+
+			<TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">Range:</TextBlock>
+			<NumericUpDown VerticalContentAlignment="Center"
+						   HorizontalAlignment="Right"
+						   Minimum="0" Maximum="{Binding Component1.MaxRange}"
+						   FormatString="0"
+					   Value="{Binding Component1.Range}"
+						   Height="40" Width="150"
+						   FontSize="16"
+						   Grid.ColumnSpan="2"
+						   Grid.Column="0"
+						   Grid.Row="4"/>
+			<TextBlock Margin="0,5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">Dec address:</TextBlock>
+			<StackPanel Margin="2,5" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+				<TextBlock  Width="70" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" Margin="0,5"  Grid.Column="1" Grid.Row="5" Text="{Binding Component1.DecModbusAdress}" ></TextBlock>
+				<Button Tapped="DecCopy_Tapped" Background="Transparent" Margin="2,0" IsVisible="{OnPlatform True,Android=False,iOS=False}" Grid.Column="2" Grid.Row="5">
+					<PathIcon Data="{StaticResource copy_regular}"/>
+				</Button>
+			</StackPanel>
+			<TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center">Hex address:</TextBlock>
+			<StackPanel Margin="2,5" Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+				<TextBlock Width="70" FontSize="16" TextAlignment="Center" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Text="{Binding Component1.HexModbusAddress}" ></TextBlock>
+				<Button Tapped="HexCopy_Tapped" Background="Transparent" Margin="2,0"  IsVisible="{OnPlatform True,Android=False,iOS=False}" Grid.Column="2" Grid.Row="6">
+					<PathIcon Data="{StaticResource copy_regular}"/>
+				</Button>
+			</StackPanel>
+
+		</Grid>
+		<Grid IsVisible="{OnPlatform True, Android=True,iOS=False}" Grid.Row="1" Grid.Column="1" Margin="10,5" ColumnDefinitions="Auto,Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+			<Border BorderBrush="#0F518C" BorderThickness="2" CornerRadius="10" Grid.RowSpan="7" Grid.ColumnSpan="4" Margin="-5,-4"></Border>
+			<TextBlock  Grid.Column="0" Margin="0,5" Grid.Row="1" VerticalAlignment="Center">HMI Start address:</TextBlock>
+			<StackPanel HorizontalAlignment="Right" Margin="0,5" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+				<Button Margin="5,0" BorderBrush="WhiteSmoke" BorderThickness="1" Command="{Binding SetHMIStartAddressTo0_2Command}" Background="{Binding Component2.HmiStartAddress, Converter={StaticResource backgroundconv}, ConverterParameter=0}" HorizontalContentAlignment="Center"  FontSize="16" Width="46">0</Button>
+				<Button Margin="0,0,5,0" BorderBrush="WhiteSmoke" BorderThickness="1" Command="{Binding SetHMIStartAddressTo1_2Command}" Background="{Binding Component2.HmiStartAddress, Converter={StaticResource backgroundconv}, ConverterParameter=1}" HorizontalContentAlignment="Center" FontSize="16" Width="46">1</Button>
+			</StackPanel>
+			<TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">PLC component:</TextBlock>
+			<ComboBox HorizontalAlignment="Right"
+				Background="#0F518C" HorizontalContentAlignment="Center"
+				Width="100" Height="40" FontSize="16" Grid.Column="1"
+				SelectedValue="{Binding Component2.ComponentType,Converter={StaticResource typeconv}}"
+				Margin="5" Padding="5" Grid.Row="2" ItemsSource="{Binding TypeList}" />
+			<TextBlock Grid.Column="0" Grid.Row="3" Height="36"
+					   VerticalAlignment="Center">
+				Component name:
+			</TextBlock>
+			<TextBlock TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent" Height="36" Width="100" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding Component2.Name}"></TextBlock>
+
+			<TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">Range:</TextBlock>
+			<NumericUpDown VerticalContentAlignment="Center"
+						   HorizontalAlignment="Right"
+						   Minimum="0" Maximum="{Binding Component2.MaxRange}"
+						   FormatString="0"
+					   Value="{Binding Component2.Range}"
+						   Height="40" Width="150"
+						   FontSize="16"
+						   Grid.ColumnSpan="2"
+						   Grid.Column="0"
+						   Grid.Row="4"/>
+			<TextBlock Margin="0,5" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">Dec address:</TextBlock>
+			<StackPanel Margin="2,5" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+				<TextBlock  Width="70" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" Margin="0,5"  Grid.Column="1" Grid.Row="5" Text="{Binding Component2.DecModbusAdress}" ></TextBlock>
+				<Button Tapped="DecCopy_Tapped2" Background="Transparent" Margin="2,0" IsVisible="{OnPlatform True,Android=False,iOS=False}" Grid.Column="2" Grid.Row="5">
+					<PathIcon Data="{StaticResource copy_regular}"/>
+				</Button>
+			</StackPanel>
+			<TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center">Hex address:</TextBlock>
+			<StackPanel Margin="2,5" Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+				<TextBlock Width="70" FontSize="16" TextAlignment="Center" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Text="{Binding Component2.HexModbusAddress}" ></TextBlock>
+				<Button Tapped="HexCopy_Tapped2" Background="Transparent" Margin="2,0"  IsVisible="{OnPlatform True,Android=False,iOS=False}" Grid.Column="2" Grid.Row="6">
+					<PathIcon Data="{StaticResource copy_regular}"/>
+				</Button>
+			</StackPanel>
+
+		</Grid>
+	</WrapPanel>
 	</Grid>
 </UserControl>

@@ -48,7 +48,7 @@ public partial class MainViewModel : ViewModelBase
     }
     public MainViewModel()
     {
-        CurrentPage = addressCalcPage;
+        //CurrentPage = addressCalcPage;
         _isPaneClosed = !_isPaneOpen;
         addressCalcPage.DataContext = new AddressCalcPageViewModel();
         infoPage.DataContext = new InfoPageViewModel();
