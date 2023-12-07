@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <AvaloniaXaml Remove="Assets\icons.axaml" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <None Remove="Assets\conn_icon.png" />
+    <None Remove="Assets\conn_icon@0.5x.png" />
+    <None Remove="Assets\Haiwell-Logo-blanco.png" />
+    <None Remove="Assets\Haiwell-Logo.png" />
+    <None Remove="Assets\Haiwell_icon.png" />
+    <None Remove="Assets\Haiwel_icon_long.png" />
+    <None Remove="Assets\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\icons.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AddressCalcPage.axaml.cs">
+      <DependentUpon>AddressCalcPage.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InfoPage.axaml.cs">
+      <DependentUpon>InfoPage.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

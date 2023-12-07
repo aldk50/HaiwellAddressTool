@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:HaiwellTools.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HaiwellTools.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<vm:MainViewModel />
+	</Design.DataContext>
+	<Grid Background="#0E1225" RowDefinitions="Auto,*">
+				<Image IsVisible="{OnPlatform True, Android=True,Windows=False}" Margin="5,5,0,10" Height="24" HorizontalAlignment="Left" VerticalAlignment="Center" Source="/Assets/logo_white.png"/>
+		
+	<SplitView Grid.Row="1" VerticalAlignment="Stretch"
+			   VerticalContentAlignment="Stretch"
+			   IsPaneOpen="{Binding IsPaneOpen}"
+			   CompactPaneLength="48"
+			   DisplayMode="CompactInline"
+			   PaneBackground="Black"
+			   OpenPaneLength="180">
+		<SplitView.Pane>
+			<StackPanel HorizontalAlignment="Stretch" Spacing="5" VerticalAlignment="Stretch">
+				<StackPanel Margin="5,0,0,0" HorizontalAlignment="Stretch" Orientation="Horizontal">
+				</StackPanel>
+				<StackPanel Margin="8,0,0,0" HorizontalAlignment="Stretch" Orientation="Horizontal">
+					<Button Padding="4" Background="Transparent" HorizontalAlignment="Center" x:Name="menubutton" Command="{Binding TrigerPaneCommand}" Foreground="WhiteSmoke">
+						<PathIcon Data="{StaticResource MenuIcon}"></PathIcon>
+					</Button>
+					<TextBlock IsVisible="{Binding IsPaneOpen}" FontWeight="SemiBold" Margin="5" Foreground="WhiteSmoke" VerticalAlignment="Center">MENU</TextBlock>
+				</StackPanel>
+				<ListBox Name="menuitems" SelectedItem="{Binding SelectedItem}" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" Background="Transparent">
+					<ListBoxItem  Tapped="ListBoxItem_Tapped" Name="address" HorizontalContentAlignment="Stretch">
+						<StackPanel Orientation="Horizontal">
+							<Image VerticalAlignment="Center" Width="24" Height="24" Source="/Assets/conn_icon.png"></Image>
+							<TextBlock Margin="5,0" VerticalAlignment="Center" IsVisible="{Binding IsPaneOpen}">Address calculator</TextBlock>
+						</StackPanel>
+					</ListBoxItem>
+					<ListBoxItem Tapped="ListBoxItem_Tapped" Name="info" HorizontalContentAlignment="Stretch">
+						<StackPanel Orientation="Horizontal">
+							<Image VerticalAlignment="Center" Width="24" Height="24">
+								<DrawingImage>
+									<DrawingImage.Drawing>
+										<DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+											<DrawingGroup Opacity="1">
+												<DrawingGroup.ClipGeometry>
+													<PathGeometry Figures="M0,0L32,0 32,32 0,32 0,0z" />
+												</DrawingGroup.ClipGeometry>
+												<GeometryDrawing Brush="#FFED0049" Geometry="F1 M32,32z M0,0z M16,5C21.728,5,26.442,9.402,26.949,15L30.949,15C30.431,7.195 23.934,1 16,1 8.066,1 1.569,7.195 1.051,15L5.051,15C5.558,9.402,10.272,5,16,5L16,5z" />
+												<GeometryDrawing Brush="#FFED0049" Geometry="F1 M32,32z M0,0z M16,27C10.272,27,5.558,22.598,5.051,17L1.051,17C1.569,24.805 8.066,31 16,31 23.934,31 30.431,24.805 30.949,17L26.949,17C26.442,22.598,21.728,27,16,27L16,27z" />
+												<GeometryDrawing Brush="#FF0F518C" Geometry="F1 M32,32z M0,0z M14.5,12.5L17.5,12.5 17.5,23.5 14.5,23.5 14.5,12.5z M14.5,8.5L17.5,8.5 17.5,11.5 14.5,11.5 14.5,8.5z" />
+											</DrawingGroup>
+										</DrawingGroup>
+									</DrawingImage.Drawing>
+								</DrawingImage>
+							</Image>
+							<TextBlock Margin="5,0" VerticalAlignment="Center" IsVisible="{Binding IsPaneOpen}">Info</TextBlock>
+						</StackPanel>
+					</ListBoxItem>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+		<SplitView.Content>
+			<Border BorderBrush="#0E1225" BorderThickness="0">
+				<Grid RowDefinitions="*" Background="#0E1225">
+					<TransitioningContentControl Grid.Row="1" Background="#1e1e1e" Content="{Binding CurrentPage}"/>
+				</Grid>
+			</Border>
+		</SplitView.Content>
+	</SplitView>
+	</Grid>
+</UserControl>
