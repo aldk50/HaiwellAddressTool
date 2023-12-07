@@ -34,7 +34,9 @@ namespace HaiwellTools.Models
             get { return _hmiStartAddress; }
             set
             {
-                _hmiStartAddress = value; OnPropertyChanged(nameof(HmiStartAddress));
+                if (value <= 0) _hmiStartAddress = 0;
+                if(value>0) _hmiStartAddress = 1;
+                OnPropertyChanged(nameof(HmiStartAddress));
                 DecModbusAdress = _minDecModbusAddress + _range + _hmiStartAddress;
             }
         }
@@ -54,7 +56,9 @@ namespace HaiwellTools.Models
             get { return _range; }
             set
             {
-                _range = value; OnPropertyChanged(nameof(Range));
+                _range = value;
+                if (value > _maxRange) _range = _maxRange;
+                OnPropertyChanged(nameof(Range));
                 DecModbusAdress = _minDecModbusAddress + _range + _hmiStartAddress;
             }
         }
