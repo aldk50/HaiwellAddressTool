@@ -4,7 +4,6 @@ using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Platform;
 using HaiwellTools.ViewModels;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 
 namespace HaiwellTools.Views;
