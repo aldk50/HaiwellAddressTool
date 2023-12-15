@@ -36,7 +36,7 @@
 			<TextBlock Grid.Column="1" Grid.Row="7" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Haiwell PLC's Modbus addressing number from 0, Some HMI or configuration soft from 1,if HMI or configuration soft modbus addressing from 0 then communicate direct, e.g. M0 is 0x3072,V0 is 4x0512. if HMI or configuration soft modbus addressing from 1 then the address must add 1,e.g.M0 is 0x3073[3072+1],V0 is 4x0513[512+1].The first place address is the Modbus protocol component type(0/1 is bit relay ,3/4 is word register , 0/4 can read and write,1/3 read only)other places are the	component address.
 			</TextBlock>
-			<TextBlock Grid.Row="8" Grid.Column="1">http://en.haiwell.com/</TextBlock>
+			<TextBlock Grid.Row="8" Grid.Column="0" >http://en.haiwell.com/</TextBlock>
 		</Grid>
 	</ScrollViewer>
 </UserControl>

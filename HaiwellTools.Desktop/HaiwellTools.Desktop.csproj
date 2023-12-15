@@ -8,6 +8,7 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>icon_light.ico</ApplicationIcon>
+    <AssemblyName>HaiwellAddressTool</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="icon_light.ico" />
