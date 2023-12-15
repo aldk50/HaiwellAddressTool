@@ -22,7 +22,7 @@ namespace HaiwellTools.Views
         {
             var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
             var dataObject = new DataObject();
-            dataObject.Set(DataFormats.Text, ((AddressCalcPageViewModel)DataContext).Component1.HexModbusAddress);
+            dataObject.Set(DataFormats.Text, ((AddressCalcPageViewModel)DataContext).Component1.HexModbusAddress.Split('x')[1]);
             await clipboard?.SetDataObjectAsync(dataObject);
         }
         private async void DecCopy_Tapped2(object? sender, Avalonia.Input.TappedEventArgs e)
@@ -36,7 +36,7 @@ namespace HaiwellTools.Views
         {
             var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
             var dataObject = new DataObject();
-            dataObject.Set(DataFormats.Text, ((AddressCalcPageViewModel)DataContext).Component2.HexModbusAddress);
+            dataObject.Set(DataFormats.Text, ((AddressCalcPageViewModel)DataContext).Component2.HexModbusAddress.Split('x')[1]);
             await clipboard?.SetDataObjectAsync(dataObject);
         }
     }

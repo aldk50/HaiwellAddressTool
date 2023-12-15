@@ -67,7 +67,7 @@ namespace HaiwellTools.Models
         public int DecModbusAdress
         {
             get { return _decModbusAddress; }
-            set { _decModbusAddress = value; OnPropertyChanged(nameof(DecModbusAdress)); HexModbusAddress = _decModbusAddress.ToString("X"); }
+            set { _decModbusAddress = value; OnPropertyChanged(nameof(DecModbusAdress)); HexModbusAddress = "0x"+_decModbusAddress.ToString("X"); }
         }
         private string _hexModbusAddress = "";
 
@@ -129,25 +129,25 @@ namespace HaiwellTools.Models
                         _maxRange = 2047; _minDecModbusAddress = 28672; _name = "Step relay"; _sizeType = SizeType.Bit;
                         break;
                     case ComponentType.CR:
-                        _maxRange = 255; _minDecModbusAddress = 0; _name = "Expantion module parameter"; _sizeType = SizeType.Reg;
+                        _maxRange = 255; _minDecModbusAddress = 0; _name = "Expantion module parameter"; _sizeType = SizeType.Register;
                         break;
                     case ComponentType.AI:
-                        _maxRange = 255; _minDecModbusAddress = 0; _name = "Analog input register"; _sizeType = SizeType.Reg;
+                        _maxRange = 255; _minDecModbusAddress = 0; _name = "Analog input register"; _sizeType = SizeType.Register;
                         break;
                     case ComponentType.AQ:
-                        _maxRange = 255; _minDecModbusAddress = 256; _name = "Analog output register"; _sizeType = SizeType.Reg;
+                        _maxRange = 255; _minDecModbusAddress = 256; _name = "Analog output register"; _sizeType = SizeType.Register;
                         break;
                     case ComponentType.V:
-                        _maxRange = 14847; _minDecModbusAddress = 512; _name = "Internal data register"; _sizeType = SizeType.Reg;
+                        _maxRange = 14847; _minDecModbusAddress = 512; _name = "Internal data register"; _sizeType = SizeType.Register;
                         break;
                     case ComponentType.TV:
-                        _maxRange = 1023; _minDecModbusAddress = 15360; _name = "Timer(current value)"; _sizeType = SizeType.Reg;
+                        _maxRange = 1023; _minDecModbusAddress = 15360; _name = "Timer(current value)"; _sizeType = SizeType.Register;
                         break;
                     case ComponentType.CV:
-                        _maxRange = 255; _minDecModbusAddress = 16384; _name = "Counter(current value)"; _sizeType = SizeType.Reg;
+                        _maxRange = 255; _minDecModbusAddress = 16384; _name = "Counter(current value)"; _sizeType = SizeType.Register;
                         break;
                     case ComponentType.SV:
-                        _maxRange = 900; _minDecModbusAddress = 17408; _name = "System special register"; _sizeType = SizeType.Reg;
+                        _maxRange = 900; _minDecModbusAddress = 17408; _name = "System special register"; _sizeType = SizeType.Register;
                         break;
                     default:
                         _maxRange = 0; _minDecModbusAddress = 0; _name = ""; _sizeType = SizeType.Non;
@@ -173,7 +173,7 @@ namespace HaiwellTools.Models
     }
     public enum SizeType
     {
-        Non, Bit, Reg
+        Non, Bit, Register
     }
     public static class ComponentExtantion
     {
@@ -200,6 +200,20 @@ namespace HaiwellTools.Models
                 "CV" => ComponentType.CV,
                 "SV" => ComponentType.SV,
                 _ => throw new NotImplementedException()
+            };
+        }
+
+        public static string GetName(this SizeType value)
+        {
+            return value.ToString();
+        }
+        public static SizeType GetComponentSizeType(this string value)
+        {
+            return value switch
+            {
+                "Bit" => SizeType.Bit,
+                "Register" => SizeType.Register,
+                _ => SizeType.Non
             };
         }
     }
