@@ -8,11 +8,6 @@
 		<Grid Margin="0,5,10,5" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*">
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,7" Grid.Row="6" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,12" Grid.Row="7" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<!--<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>-->
-
 			<TextBlock Grid.ColumnSpan="2" Foreground="#FFED0049" FontWeight="DemiBold" Grid.Column="0" Grid.Row="1" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Bit component
 			</TextBlock>
@@ -30,30 +25,31 @@
 				<Run>Support Modbus function code: 3, 4, 6, 16</Run>
 			</TextBlock>
 			<TextBlock Foreground="#FFED0049" FontWeight="DemiBold" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
-				Address declare:
+				Address declare
 			</TextBlock>
 			<TextBlock Grid.Column="1" Grid.Row="6" Margin="5,0" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Haiwell PLC use the stand Modbus protocol (support RTU and ASCII mode),can communicate to HMI and configuration soft which support Modbus protocol.
 			</TextBlock>
-			<TextBlock Grid.Column="1" Grid.Row="7" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
+			<TextBlock Grid.Column="1" Grid.Row="7" Margin="5,5,5,0" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Haiwell PLC's Modbus addressing number from 0, Some HMI or configuration soft from 1,if HMI or configuration soft modbus addressing from 0 then communicate direct, e.g. M0 is 0x3072,V0 is 4x0512. if HMI or configuration soft modbus addressing from 1 then the address must add 1,e.g.M0 is 0x3073[3072+1],V0 is 4x0513[512+1].The first place address is the Modbus protocol component type(0/1 is bit relay ,3/4 is word register , 0/4 can read and write,1/3 read only)other places are the	component address.
 			</TextBlock>
-			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="8" Grid.Column="0" >
-				<Run Foreground="#FFED0049">More information:</Run>
-				<Run Foreground="WhiteSmoke">http://en.haiwell.com/</Run>
+			<TextBlock Foreground="#FFED0049" Grid.ColumnSpan="2"  Margin="5" Grid.Row="8" Grid.Column="0">Author</TextBlock>
+			
+			<TextBlock TextWrapping="WrapWithOverflow"  Margin="5,0" Grid.Row="9" Grid.Column="1" >
+				Alexey Dubovik
 			</TextBlock>
-			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="9" Grid.Column="0" >
-				<Run Foreground="#FFED0049">Author:</Run>
-				<Run Foreground="WhiteSmoke">Alexey Dubovik</Run>
+			<TextBlock Grid.ColumnSpan="2"  Margin="5" Grid.Row="12" Grid.Column="0">
+				<Run Foreground="#FFED0049">More information</Run>
 			</TextBlock>
-			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="10" Grid.Column="0" >
-				<Run Foreground="#FFED0049">GitHub:</Run>
+			<TextBlock TextWrapping="WrapWithOverflow"  Margin="5,0,5,5" Grid.Row="13" Grid.Column="1" >
 				<Run Foreground="WhiteSmoke">https://github.com/aldk50/HaiwellTools</Run>
+				<LineBreak/>
+				<Run Foreground="WhiteSmoke">http://en.haiwell.com</Run>
 			</TextBlock>
-			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="11" Grid.Column="0" >
-				<Run Foreground="#FFED0049">Version:</Run>
-				<Run Foreground="WhiteSmoke">1.0</Run>
+			<TextBlock Grid.ColumnSpan="2"  Margin="5" Grid.Row="10" Grid.Column="0" >
+				<Run Foreground="#FFED0049">Version</Run>
 			</TextBlock>
+			<TextBlock Grid.ColumnSpan="2"  Margin="5,0" Grid.Row="11" Grid.Column="1">1.0</TextBlock>
 		</Grid>
 	</ScrollViewer>
 </UserControl>
