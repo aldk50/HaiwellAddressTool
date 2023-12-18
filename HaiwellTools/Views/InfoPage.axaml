@@ -2,16 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
              x:Class="HaiwellTools.Views.InfoPage">
 	<ScrollViewer>
-		<Grid Margin="0,5,10,5" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*">
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,12" Grid.Row="6" Width="5" Height="5" Fill="#0F518C"></Ellipse>
+		<Grid Margin="0,5,10,5" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*">
+			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,7" Grid.Row="6" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,12" Grid.Row="7" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,22" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
+			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,22" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>
+			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			
 			<TextBlock Grid.ColumnSpan="2" Foreground="#FFED0049" FontWeight="DemiBold" Grid.Column="0" Grid.Row="1" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Bit component
@@ -36,7 +36,12 @@
 			<TextBlock Grid.Column="1" Grid.Row="7" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Haiwell PLC's Modbus addressing number from 0, Some HMI or configuration soft from 1,if HMI or configuration soft modbus addressing from 0 then communicate direct, e.g. M0 is 0x3072,V0 is 4x0512. if HMI or configuration soft modbus addressing from 1 then the address must add 1,e.g.M0 is 0x3073[3072+1],V0 is 4x0513[512+1].The first place address is the Modbus protocol component type(0/1 is bit relay ,3/4 is word register , 0/4 can read and write,1/3 read only)other places are the	component address.
 			</TextBlock>
-			<TextBlock Grid.Row="8" Grid.Column="0" >http://en.haiwell.com/</TextBlock>
+			<TextBlock Margin="5,2" Grid.Row="8" Foreground="#FFED0049" Grid.Column="0" >More information:</TextBlock>
+			<TextBlock Margin="5,2" Grid.Row="9" Grid.Column="1" >http://en.haiwell.com/</TextBlock>
+			<TextBlock Margin="5,2" Grid.Row="10" Foreground="#FFED0049" Grid.Column="0" >Author:</TextBlock>
+			<TextBlock Margin="5,2" Grid.Row="11" Grid.Column="1" >Alexey Dubovik</TextBlock>
+			<TextBlock Margin="5,2" Grid.Row="12" Foreground="#FFED0049" Grid.Column="0" >GitHub:</TextBlock>
+			<TextBlock Margin="5,2" Grid.Row="13" Grid.Column="1" >https://github.com/aldk50/HaiwellTools</TextBlock>
 		</Grid>
 	</ScrollViewer>
 </UserControl>
