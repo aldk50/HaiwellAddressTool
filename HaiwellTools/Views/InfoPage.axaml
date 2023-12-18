@@ -42,7 +42,7 @@
 				<Run Foreground="#FFED0049">More information</Run>
 			</TextBlock>
 			<TextBlock TextWrapping="WrapWithOverflow"  Margin="5,0,5,5" Grid.Row="13" Grid.Column="1" >
-				<Run Foreground="WhiteSmoke">https://github.com/aldk50/HaiwellTools</Run>
+				<Run Foreground="WhiteSmoke">https://github.com/aldk50/HaiwellAddressTool</Run>
 				<LineBreak/>
 				<Run Foreground="WhiteSmoke">http://en.haiwell.com</Run>
 			</TextBlock>
