@@ -8,40 +8,48 @@
 		<Grid Margin="0,5,10,5" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*">
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,7" Grid.Row="6" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,12" Grid.Row="7" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
+			<!--<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="2" Width="5" Height="5" Fill="#0F518C"></Ellipse>
 			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,6" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>
-			
+			<Ellipse Grid.Column="0" VerticalAlignment="Top" Margin="5,23" Grid.Row="4" Width="5" Height="5" Fill="#0F518C"></Ellipse>-->
+
 			<TextBlock Grid.ColumnSpan="2" Foreground="#FFED0049" FontWeight="DemiBold" Grid.Column="0" Grid.Row="1" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Bit component
 			</TextBlock>
-				<TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
-					<Run>Equivalently Modbus address type: 0, 1</Run><LineBreak/>
-					<Run>Support Modbus function code: 1, 2, 5, 15</Run>
+			<TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
+				<Run>Equivalently Modbus address type: 0, 1</Run>
+				<LineBreak/>
+				<Run>Support Modbus function code: 1, 2, 5, 15</Run>
 			</TextBlock>
 			<TextBlock Grid.ColumnSpan="2" Foreground="#FFED0049" FontWeight="DemiBold" Grid.Column="0" Grid.Row="3" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Register component
 			</TextBlock>
 			<TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
-				<Run>Equivalently Modbus address type: 3, 4</Run><LineBreak/>
+				<Run>Equivalently Modbus address type: 3, 4</Run>
+				<LineBreak/>
 				<Run>Support Modbus function code: 3, 4, 6, 16</Run>
 			</TextBlock>
 			<TextBlock Foreground="#FFED0049" FontWeight="DemiBold" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Address declare:
-			</TextBlock>		
+			</TextBlock>
 			<TextBlock Grid.Column="1" Grid.Row="6" Margin="5,0" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Haiwell PLC use the stand Modbus protocol (support RTU and ASCII mode),can communicate to HMI and configuration soft which support Modbus protocol.
 			</TextBlock>
 			<TextBlock Grid.Column="1" Grid.Row="7" Margin="5" TextWrapping="WrapWithOverflow" TextAlignment="DetectFromContent">
 				Haiwell PLC's Modbus addressing number from 0, Some HMI or configuration soft from 1,if HMI or configuration soft modbus addressing from 0 then communicate direct, e.g. M0 is 0x3072,V0 is 4x0512. if HMI or configuration soft modbus addressing from 1 then the address must add 1,e.g.M0 is 0x3073[3072+1],V0 is 4x0513[512+1].The first place address is the Modbus protocol component type(0/1 is bit relay ,3/4 is word register , 0/4 can read and write,1/3 read only)other places are the	component address.
 			</TextBlock>
-			<TextBlock Margin="5,2" Grid.Row="8" Foreground="#FFED0049" Grid.Column="0" >More information:</TextBlock>
-			<TextBlock Margin="5,2" Grid.Row="9" Grid.Column="1" >http://en.haiwell.com/</TextBlock>
-			<TextBlock Margin="5,2" Grid.Row="10" Foreground="#FFED0049" Grid.Column="0" >Author:</TextBlock>
-			<TextBlock Margin="5,2" Grid.Row="11" Grid.Column="1" >Alexey Dubovik</TextBlock>
-			<TextBlock Margin="5,2" Grid.Row="12" Foreground="#FFED0049" Grid.Column="0" >GitHub:</TextBlock>
-			<TextBlock Margin="5,2" Grid.Row="13" Grid.Column="1" >https://github.com/aldk50/HaiwellTools</TextBlock>
+			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="8" Grid.Column="0" >
+				<Run Foreground="#FFED0049">More information:</Run>
+				<Run Foreground="WhiteSmoke">http://en.haiwell.com/</Run>
+			</TextBlock>
+			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="9" Grid.Column="0" >
+				<Run Foreground="#FFED0049">Author:</Run>
+				<Run Foreground="WhiteSmoke">Alexey Dubovik</Run>
+			</TextBlock>
+			<TextBlock Grid.ColumnSpan="2"  Margin="5,5" Grid.Row="10" Grid.Column="0" >
+				<Run Foreground="#FFED0049">GitHub:</Run>
+				<Run Foreground="WhiteSmoke">https://github.com/aldk50/HaiwellTools</Run>
+			</TextBlock>
 		</Grid>
 	</ScrollViewer>
 </UserControl>
